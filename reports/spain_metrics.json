@@ -1,0 +1,70 @@
+{
+  "market": "spain",
+  "train": [
+    "2015-01-15",
+    "2017-06-30"
+  ],
+  "validation": [
+    "2017-07-01",
+    "2017-12-31"
+  ],
+  "test": [
+    "2018-01-01",
+    "2018-12-31"
+  ],
+  "n_test_hours": 8760,
+  "point": {
+    "seasonal_naive": {
+      "mape": 4.579844428508653,
+      "rmse": 2098.1410121460653
+    },
+    "harmonic_ridge": {
+      "mape": 2.498640791551661,
+      "rmse": 1056.6416449918054
+    },
+    "lightgbm": {
+      "mape": 2.203975459287045,
+      "rmse": 935.7742064415467
+    },
+    "torch_mlp": {
+      "mape": 2.0343647884806453,
+      "rmse": 916.7209348494603
+    },
+    "ensemble_lgbm_mlp": {
+      "mape": 1.8954619479358399,
+      "rmse": 845.8123983899609
+    },
+    "tso": {
+      "mape": 0.9256776471404304,
+      "rmse": 389.30988778499955
+    }
+  },
+  "best_model": "ensemble_lgbm_mlp",
+  "diebold_mariano": {
+    "ensemble_lgbm_mlp_vs_seasonal_naive": {
+      "dm_stat": -7.448420596585181,
+      "p_value": 6.920112292239994e-13,
+      "n_days": 365,
+      "mean_loss_diff": -774.1004285915175
+    },
+    "ensemble_lgbm_mlp_vs_harmonic_ridge": {
+      "dm_stat": -6.584326366381269,
+      "p_value": 1.5987891935275758e-10,
+      "n_days": 365,
+      "mean_loss_diff": -162.07066888951414
+    },
+    "ensemble_lgbm_mlp_vs_tso": {
+      "dm_stat": 9.212142261958787,
+      "p_value": 2.591061111587844e-18,
+      "n_days": 365,
+      "mean_loss_diff": 291.58444583770637
+    }
+  },
+  "interval_80": {
+    "coverage": 0.8359589041095891,
+    "mean_width": 2525.583668375389,
+    "winkler": 3553.000394997345
+  },
+  "conformal_correction_mw": 670.1858969379306,
+  "runtime_sec": 29.3
+}

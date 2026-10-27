@@ -1,0 +1,60 @@
+{
+  "market": "pjme",
+  "train": [
+    "2002-01-16",
+    "2016-07-31"
+  ],
+  "validation": [
+    "2016-08-01",
+    "2017-07-31"
+  ],
+  "test": [
+    "2017-08-01",
+    "2018-08-02"
+  ],
+  "n_test_hours": 8808,
+  "point": {
+    "seasonal_naive": {
+      "mape": 11.218551232415399,
+      "rmse": 4857.211254911716
+    },
+    "harmonic_ridge": {
+      "mape": 6.794080160981621,
+      "rmse": 2921.2818461181528
+    },
+    "lightgbm": {
+      "mape": 6.843047092491537,
+      "rmse": 2994.1355866973236
+    },
+    "torch_mlp": {
+      "mape": 5.8493134235161515,
+      "rmse": 2583.263561714285
+    },
+    "ensemble_lgbm_mlp": {
+      "mape": 6.042483100359418,
+      "rmse": 2662.4815244661336
+    }
+  },
+  "best_model": "torch_mlp",
+  "diebold_mariano": {
+    "torch_mlp_vs_seasonal_naive": {
+      "dm_stat": -7.208314367325855,
+      "p_value": 3.2667033646142738e-12,
+      "n_days": 367,
+      "mean_loss_diff": -1686.842316311581
+    },
+    "torch_mlp_vs_harmonic_ridge": {
+      "dm_stat": -4.66529665146914,
+      "p_value": 4.328269976959519e-06,
+      "n_days": 367,
+      "mean_loss_diff": -292.9574134728113
+    }
+  },
+  "interval_80": {
+    "coverage": 0.7790644868301544,
+    "mean_width": 6460.672499468304,
+    "winkler": 9815.81236146853
+  },
+  "conformal_correction_mw": 1187.473913964242,
+  "runtime_sec": 282.0
+}

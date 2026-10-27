@@ -1,0 +1,31 @@
+# Weekly retrain. Deploys to Cloud Run only if the GCP secrets are set.
+name: retrain
+on:
+  schedule:
+    - cron: "0 3 * * 1"
+  workflow_dispatch:
+jobs:
+  retrain:
+    runs-on: ubuntu-latest
+    env:
+      GCP_PROJECT: ${{ secrets.GCP_PROJECT }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
+      - run: make data train monitor
+      - uses: actions/upload-artifact@v4
+        with:
+          name: metrics
+          path: reports/*.json
+      - if: ${{ env.GCP_PROJECT != '' }}
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - if: ${{ env.GCP_PROJECT != '' }}
+        run: |
+          gcloud run deploy load-forecast --source . --region us-west1 \
+            --project "$GCP_PROJECT" --allow-unauthenticated --memory 1Gi

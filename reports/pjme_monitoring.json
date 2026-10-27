@@ -1,0 +1,24 @@
+{
+  "market": "pjme",
+  "reference_val_mape": 6.3503819442694525,
+  "alert_rule": "rolling 14-day MAPE > 1.3 x reference, cooldown 28 days",
+  "test_mape": {
+    "static": 6.8430470924915365,
+    "monthly": 6.766375269176746,
+    "on_alert": 6.804208114353615
+  },
+  "n_retrains": {
+    "static": 0,
+    "monthly": 12,
+    "on_alert": 6
+  },
+  "alert_retrain_dates": [
+    "2017-08-29",
+    "2017-09-26",
+    "2018-01-04",
+    "2018-02-01",
+    "2018-05-28",
+    "2018-06-28"
+  ],
+  "max_psi_load_30d": 1.800992388297323
+}
